@@ -281,8 +281,10 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (self.showGroup) {
         static NSString *cellId=@"MozPhotoPickerGroupCell";
-        ALAssetsGroup *group=[self.assetsGroups objectAtIndex:indexPath.row];
-        
+        ALAssetsGroup *group=nil;
+        if ([self.assetsGroups count]>indexPath.row) {
+            group = [self.assetsGroups objectAtIndex:indexPath.row];
+        }
         MozPhotoPickerGroupCell *cell=[tableView dequeueReusableCellWithIdentifier:cellId];
         if (!cell) {
             cell=[[MozPhotoPickerGroupCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
