@@ -15,6 +15,7 @@
 @synthesize topTitleLabel=_topTitleLabel;
 @synthesize mainTableView=_mainTableView;
 @synthesize changeBtn=_changeBtn;
+@synthesize closeBtn = _closeBtn;
 
 #pragma mark - 初始化
 
@@ -32,7 +33,8 @@
     self.backgroundColor = [UIColor whiteColor];
     _topBarViewRect= CGRectMake(0, 0, SCNWIDTH, 40);
     _topTitleLabelRect= CGRectMake((SCNWIDTH - 200)*0.5, 0, 200, 40);
-    _changeBtnRect = CGRectMake(0, 0, 60, 40);
+    _changeBtnRect = CGRectMake(SCNWIDTH - 60, 0, 60, 40);
+    _closeBtnRect = CGRectMake(0, 0, 60, 40);
     _mainTableViewRect= CGRectMake(0, 40, SCNWIDTH, SCNHEIGHT - 40);
 }
 
@@ -44,6 +46,7 @@
 -(void)loadUI{
     [self addSubview:self.topBarView];
     [self.topBarView addSubview:self.topTitleLabel];
+    [self.topBarView addSubview:self.closeBtn];
     [self.topBarView addSubview:self.changeBtn];
     [self addSubview:self.mainTableView];
 }
@@ -75,6 +78,15 @@
         _topTitleLabel.lineBreakMode = NSLineBreakByTruncatingMiddle;
     }
     return _topTitleLabel;
+}
+
+-(UIButton *)closeBtn{
+    if (!_closeBtn) {
+        _closeBtn = [UIButton buttonWithType:UIButtonTypeSystem];
+        _closeBtn.frame = _closeBtnRect;
+        [_closeBtn setTitle:@"关闭" forState:UIControlStateNormal];
+    }
+    return _closeBtn;
 }
 
 -(UIButton *)changeBtn{

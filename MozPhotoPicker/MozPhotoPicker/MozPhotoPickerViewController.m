@@ -79,9 +79,9 @@
     hasLoadUI = YES;
     
     [self.mainView.topBarView addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapViewAction)]];
-    [self.mainView.changeBtn addTarget:self action:@selector(changeAction) forControlEvents:UIControlEventTouchUpInside];
-
     [self.mainView.topBarView addGestureRecognizer:[[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(panGest:)]];
+    [self.mainView.changeBtn addTarget:self action:@selector(changeAction) forControlEvents:UIControlEventTouchUpInside];
+    [self.mainView.closeBtn addTarget:self action:@selector(closeAction) forControlEvents:UIControlEventTouchUpInside];
 }
 
 #pragma other action
@@ -106,6 +106,17 @@
     }else{
         [self setHighHeightWithAnimation:YES];
     }
+}
+
+- (void)closeAction{
+    [UIView animateWithDuration:0.2 animations:^{
+        CGRect frame = curRect;
+        frame.origin.y = SCNHEIGHT;
+        self.mainView.frame = frame;
+    } completion:^(BOOL finished) {
+        [self removeFromParentViewController];
+        [self.view removeFromSuperview];
+    }];
 }
 
 - (void)changeAction{

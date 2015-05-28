@@ -17,11 +17,13 @@
     CGRect _topTitleLabelRect;
     CGRect _mainTableViewRect;
     CGRect _changeBtnRect;
+    CGRect _closeBtnRect;
 }
 
 @property(nonatomic,readonly)UIView *topBarView;
 @property(nonatomic,readonly)UILabel *topTitleLabel;
 @property(nonatomic,readonly)UIButton *changeBtn;
+@property(nonatomic,readonly)UIButton *closeBtn;
 @property(nonatomic,readonly)UITableView *mainTableView;
 
 - (void)loadUI;
